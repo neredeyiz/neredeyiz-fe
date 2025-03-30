@@ -12,3 +12,18 @@ export const fetchChoices = async () => {
     throw error;
   }
 };
+
+export const vote = async (placeName) => {
+  try {
+    const response = await axios.get(`${API_URL}/vote`, {
+      params: { place_name: placeName }, // Automatically encodes special characters
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error voting:', error);
+    throw error;
+  }
+}
